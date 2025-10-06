@@ -1,4 +1,3 @@
-
 import os, json, subprocess, shlex, pathlib
 from flask import Flask, render_template, request, jsonify
 import requests
@@ -7,9 +6,13 @@ app = Flask(__name__)
 
 @app.get("/api/health")
 def health():
-    return jsonify({"status": "ok"}), 200
+    """Health check endpoint for the autograder"""
+    return jsonify({
+        "status": "OK"
+    }), 200
+
 # ----- TinyLlama via Ollama settings (Stage 2) -----
-OLLAMA_URL = os.getenv("OLLAMA_URL", "http://127.0.0.1:11434")
+OLLAMA_URL = os.getenv("OLLAMA_URL", "http://4.227.86.28:11434")
 OLLAMA_MODEL = os.getenv("OLLAMA_MODEL", "tinyllama")
 
 @app.get("/")
